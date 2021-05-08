@@ -1,0 +1,139 @@
+<header >
+  <!-- Header Start -->
+  <div class="header-area">
+    <div class="main-header ">
+      <div class="header-top top-bg d-none d-lg-block">
+        <div class="container-fluid">
+          <div class="col-xl-12">
+            <div class="row d-flex justify-content-between align-items-center">
+              <div class="header-info-left d-flex">
+                <div class="flag">
+                  <img src="../assets/img/icon/vietnamnho.png" alt="">
+                </div>
+                <div class="select-this">
+                  <form action="#">
+                    <div class="select-itms">
+                      <select name="select" id="select1">
+                        <option value="">Việt Nam</option>
+                        <option value="">USA</option>
+                        <option value="">CDA</option>
+                        <option value="">SPN</option>
+                      </select>
+                    </div>
+                  </form>
+                </div>
+                <ul class="contact-now">
+                  <li>+84 338 579 681</li>
+                </ul>
+              </div>
+
+              <div class="header-info-right" *ngIf="!isLoggedIn;else out">
+                <ul>
+                  <li *ngIf="isLoggedIn"><a>{{'Hello ' + username}}</a></li>
+<!--                  <li><a [routerLink]="['/login']">My Account </a></li>-->
+                  <li><a href="product_list.html">Yêu thích</a></li>
+                  <li><a [routerLink]="['/shop']">Cửa hàng</a></li>
+                  <li><a [routerLink]="['/checkout']">Thanh toán</a></li>
+                </ul>
+              </div>
+              <ng-template #out>
+                <div class="header-info-right" *ngIf="role != 'ROLE_ADMIN';else admin">
+                  <ul>
+                    <li *ngIf="isLoggedIn"><a>{{'Hello ' + username}}</a></li>
+                    <!--                  <li><a [routerLink]="['/login']">My Account </a></li>-->
+                    <li><a href="product_list.html">Yêu thích</a></li>
+                    <li><a [routerLink]="['/shop']">Cửa hàng</a></li>
+                    <li><a [routerLink]="['/checkout']">Thanh toán</a></li>
+                  </ul>
+                </div>
+                <ng-template #admin>
+                  <div class="header-info-right" >
+                    <ul>
+                      <li *ngIf="isLoggedIn"><a>{{'Hello ' + username}}</a></li>
+                      <!--                  <li><a [routerLink]="['/login']">My Account </a></li>-->
+                      <!--                    <li><a href="product_list.html">Yêu thích</a></li>-->
+                      <li><a [routerLink]="['/user-manager']">Quản lý thành viên</a></li>
+                      <li><a [routerLink]="['/good-manager']">Quản lý hàng hóa</a></li>
+                    </ul>
+                  </div>
+                </ng-template>
+              </ng-template>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="header-bottom header-sticky">
+        <div class="container-fluid">
+          <div class="row align-items-center">
+            <!-- Logo -->
+            <div class="col-xl-1 col-lg-1 col-md-1 col-sm-3">
+              <div>
+                <a [routerLink]="['']" ><img src="../../../../assets/img/logo/logonew.png" alt=""></a>
+              </div>
+            </div>
+            <div class="col-xl-6 col-lg-8 col-md-7 col-sm-5">
+              <!-- Main-menu -->
+              <div class="main-menu f-right d-none d-lg-block">
+                <nav>
+                  <ul id="navigation">
+                    <li><a [routerLink]="['']">Trang Chủ</a></li>
+                    <li [routerLink]="['/shop']" class="hot"><a>Của hàng</a></li>
+                    <li><a [routerLink]="['/blog']">Blog</a>
+                    </li>
+                    <li><a>Dịch vụ</a>
+                      <ul class="submenu" *ngIf="role == 'ROLE_USER';else bl">
+                        <li *ngIf="idUser == 0"><a (click)="dialogLoginComment()">Đăng nhập</a></li>
+                        <li><a [routerLink]="['/cart']">Giỏ hàng</a></li>
+                        <li><a [routerLink]="['/about']">Thông tin</a></li>
+                        <li><a [routerLink]="['/checkout']">Thanh toán</a></li>
+                      </ul>
+                      <ng-template #bl>
+                        <ul class="submenu">
+                          <li><a [routerLink]="['/user-manager']">Quản lý thành viên</a></li>
+                          <li><a [routerLink]="['/good-manager']">Quản lý hàng hóa</a></li>
+                          <li><a [routerLink]="['/bill-manager']">Quản lý đơn đặt</a></li>
+                        </ul>
+                      </ng-template>
+                    </li>
+                    <li><a [routerLink]="['/contact']">Liên hệ</a></li>
+                  </ul>
+                </nav>
+              </div>
+            </div>
+            <div class="col-xl-5 col-lg-3 col-md-3 col-sm-3 fix-card">
+              <ul class="header-right f-right d-none d-lg-block d-flex justify-content-between">
+                <li class="d-none d-xl-block mt-3">
+                  <div class="form-box f-right ">
+                    <input type="text" name="Search" placeholder="Tim kiếm sản phẩm">
+                    <div class="search-icon">
+                      <i class="fas fa-search special-tag"></i>
+                    </div>
+                  </div>
+                </li>
+                <li class=" d-none d-xl-block">
+                  <div class="favorit-items mt-3">
+                    <i class="far fa-heart">2</i>
+                  </div>
+                </li>
+<!--                <li>-->
+<!--                  <div class="shopping-card mt-3 btn-shake" >-->
+<!--                    <a [routerLink]="['/cart']"><i class="fas fa-shopping-cart">{{carts.length}}</i></a>-->
+<!--                  </div>-->
+<!--                </li>-->
+                <li *ngIf="isLoggedIn== false;else block" class="d-none d-lg-block mt-4" (click)="dialogLoginComment()"> <button class="btn btn-info" style="background: #2577fd">Đăng nhập</button></li>
+                <ng-template #block>
+                  <li class="d-none d-lg-block mt-4" [routerLink]="['']" (click)="logout()"> <button class="btn btn-info" style="background: #2577fd">Đăng xuất</button></li>
+                </ng-template>
+              </ul>
+            </div>
+            <!-- Mobile Menu -->
+            <div class="col-12">
+              <div class="mobile_menu d-block d-lg-none"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Header End -->
+</header>

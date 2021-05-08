@@ -1,0 +1,157 @@
+<div class="container-fluid">
+  <form [formGroup]="formCreate" class="m-4">
+    <h3 class="row d-flex justify-content-center" style="font-size: 17px">Thêm mới thành viên</h3>
+    <hr>
+    <div class="form-group row">
+      <label class="col-sm-3 col-form-label">Tên đăng nhập<sup class="text-danger">*</sup> </label>
+      <div class="col-sm-8">
+        <input type="text" class="form-control form-control-sm" formControlName="username" required>
+      </div>
+      <label class="ml-2 text-success"
+             *ngIf="formCreate.get('username').valid">
+        <i style="font-size: 15px" class="fas fa-check"></i></label>
+      <div class="text-danger font-italic" role="alert" style="margin-left: 28%"
+           *ngIf="formCreate.get('username').invalid && formCreate.get('username').touched">
+        <span *ngIf="formCreate.get('username').hasError('required')"
+              style="font-size: 12px">Vui lòng nhập tên đăng nhập.</span>
+        <span
+          *ngIf="formCreate.get('username').hasError('pattern')"
+          style="font-size: 12px">Tên đăng nhập không hợp lệ.</span>
+        <span style="font-size: 12px"
+              *ngIf="formCreate.get('username').hasError('invalidName')"> Tên đăng nhập đã tồn tại.
+        </span>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-sm-3 col-form-label">Họ tên<sup class="text-danger">*</sup> </label>
+      <div class="col-sm-8">
+        <input type="text" min="1" class="form-control form-control-sm" formControlName="fullName">
+      </div>
+      <label class="ml-2 text-success"
+             *ngIf="formCreate.get('fullName').valid">
+        <i style="font-size: 15px" class="fas fa-check"></i></label>
+      <div class="text-danger font-italic" role="alert" style="margin-left: 28%"
+           *ngIf="formCreate.get('fullName').invalid && formCreate.get('fullName').touched">
+        <span *ngIf="formCreate.get('fullName').hasError('required')"
+              style="font-size: 12px">Vui lòng nhập họ tên đầy đủ.</span>
+        <span
+          *ngIf="formCreate.get('fullName').hasError('pattern')"
+          style="font-size: 12px">Họ tên không hợp lệ.</span>
+        <!--        <span style="font-size: 12px"-->
+        <!--              *ngIf="formCreate.get('fullName').hasError('inValidName')"> Tên đăng nhập đã tồn tại.-->
+        <!--        </span>-->
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-sm-3 col-form-label">Mật khẩu<sup class="text-danger">*</sup> </label>
+      <div class="col-sm-8">
+        <input type="password" class="form-control form-control-sm" formControlName="password">
+      </div>
+      <label class="ml-2 text-success"
+             *ngIf="formCreate.get('password').valid">
+        <i style="font-size: 15px" class="fas fa-check"></i></label>
+      <div class="text-danger font-italic" role="alert" style="margin-left: 28%"
+           *ngIf="formCreate.get('password').invalid && formCreate.get('password').touched">
+        <span *ngIf="formCreate.get('password').hasError('required')"
+              style="font-size: 12px">Vui lòng nhập mật khẩu.</span>
+        <span
+          *ngIf="formCreate.get('password').hasError('pattern')"
+          style="font-size: 12px">Mật khẩu không hợp lệ.</span>
+        <span style="font-size: 12px"
+              *ngIf="formCreate.get('password').hasError('inValidName')"> Tên đăng nhập đã tồn tại.
+        </span>
+      </div>
+    </div>
+
+        <div class="form-group row ">
+          <label class="col-sm-3 col-form-label">Nhập lại mật khẩu<sup class="text-danger">*</sup> </label>
+          <div class="col-sm-8">
+            <input type="password" min="1" class="form-control form-control-sm" formControlName="confirmPassword" required>
+          </div>
+          <label class="ml-2 text-success"
+                 *ngIf="formCreate.get('confirmPassword').valid && !formCreate.hasError('passwordNotMatch')">
+            <i style="font-size: 15px" class="fas fa-check"></i></label>
+
+          <div class="text-danger font-italic" role="alert" style="margin-left: 28%"
+               *ngIf="formCreate.get('confirmPassword').touched && formCreate.get('confirmPassword').invalid">
+        <span *ngIf="formCreate.get('confirmPassword').hasError('required')"
+              style="font-size: 12px">Vui lòng xác nhận lại mật khẩu.</span>
+          </div>
+          <div class="text-danger font-italic" role="alert" *ngIf="formCreate.hasError('passwordNotMatch')"
+               style="font-size: 12px;margin-left: 25%">
+            Mật khẩu không chính xác.
+          </div>
+        </div>
+    <div class="form-group row ">
+      <label class="col-sm-3 col-form-label">Email<sup class="text-danger">*</sup> </label>
+      <div class="col-sm-8">
+        <input type="text" min="1" class="form-control form-control-sm" formControlName="email" required>
+      </div>
+      <label class="ml-2 text-success"
+             *ngIf="formCreate.get('email').valid">
+        <i style="font-size: 15px" class="fas fa-check"></i></label>
+      <div class="text-danger font-italic" role="alert" style="margin-left: 28%"
+           *ngIf="formCreate.get('email').invalid && formCreate.get('email').touched">
+        <span *ngIf="formCreate.get('email').hasError('required')"
+              style="font-size: 12px">Vui lòng nhập Emai.</span>
+        <span
+          *ngIf="formCreate.get('email').hasError('pattern')"
+          style="font-size: 12px">Email không hợp lệ.</span>
+        <!--        <span style="font-size: 12px"-->
+        <!--              *ngIf="formCreate.get('fullName').hasError('inValidName')"> Tên đăng nhập đã tồn tại.-->
+        <!--        </span>-->
+      </div>
+    </div>
+
+    <div class="form-group row ">
+      <label class="col-sm-3 col-form-label">Số điện thoại<sup class="text-danger">*</sup> </label>
+      <div class="col-sm-8">
+        <input type="text" min="1" class="form-control form-control-sm" formControlName="numberPhone" required>
+      </div>
+      <label class="ml-2 text-success"
+             *ngIf="formCreate.get('numberPhone').valid">
+        <i style="font-size: 15px" class="fas fa-check"></i></label>
+      <div class="text-danger font-italic" role="alert" style="margin-left: 28%"
+           *ngIf="formCreate.get('numberPhone').invalid && formCreate.get('numberPhone').touched">
+        <span *ngIf="formCreate.get('numberPhone').hasError('required')"
+              style="font-size: 12px">Vui lòng nhập số điện thoại.</span>
+        <span
+          *ngIf="formCreate.get('numberPhone').hasError('pattern')"
+          style="font-size: 12px">Số điện thoại không hợp lệ.</span>
+        <!--        <span style="font-size: 12px"-->
+        <!--              *ngIf="formCreate.get('fullName').hasError('inValidName')"> Tên đăng nhập đã tồn tại.-->
+        <!--        </span>-->
+      </div>
+    </div>
+
+    <div class="form-group row ">
+      <label class="col-sm-3 col-form-label">Địa chỉ<sup class="text-danger">*</sup> </label>
+      <div class="col-sm-8">
+        <input type="text" min="1" class="form-control form-control-sm" formControlName="address" required>
+      </div>
+      <label class="ml-2 text-success"
+             *ngIf="formCreate.get('address').valid">
+        <i style="font-size: 15px" class="fas fa-check"></i></label>
+      <div class="text-danger font-italic" role="alert" style="margin-left: 28%"
+           *ngIf="formCreate.get('address').invalid && formCreate.get('address').touched">
+        <span *ngIf="formCreate.get('address').hasError('required')"
+              style="font-size: 12px">Vui lòng nhập địa chỉ.</span>
+        <span
+          *ngIf="formCreate.get('address').hasError('pattern')"
+          style="font-size: 12px">Địa chỉ không hợp lệ.</span>
+        <!--        <span style="font-size: 12px"-->
+        <!--              *ngIf="formCreate.get('fullName').hasError('inValidName')"> Tên đăng nhập đã tồn tại.-->
+        <!--        </span>-->
+      </div>
+    </div>
+    <div class="row d-flex justify-content-center ml-4">
+      <div>
+        <button class="btn btn-secondary btn btn-sm" style="width: 80px" [mat-dialog-close]="">Hủy</button>
+        <button type="submit" class="btn btn-success btn btn-sm mx-4" style="width: 80px" (click)="create()">Lưu
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

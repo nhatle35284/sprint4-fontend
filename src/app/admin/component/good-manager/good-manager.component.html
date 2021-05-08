@@ -1,0 +1,102 @@
+<div class="container-fluid px-0 abc" style="height: 100vh">
+  <div class="col-12-md px-5">
+    <div class=" col-12-md text-center" style="margin-right: 90px">
+      <br>
+      <br>
+      <h2>Danh sách sản phẩm</h2>
+    </div>
+    <div class="mt-3 container-fluid col-md-12">
+      <div class="col-12-md d-flex">
+<!--        <div class="col-2-md">-->
+          <button class="btn btn-success" data-toggle1="tooltip"
+                  data-placement="top"  title="Thêm thành viên" (click)="openDialogCreate()">
+            <i class="fas fa-plus"></i>
+          </button>
+<!--        </div>-->
+
+<!--        <div class="offset-md-9">-->
+<!--          <div class="row form-inline">-->
+<!--            <input class="form-control form-control mr-sm-2" type="text" placeholder="Search"-->
+<!--                   [(ngModel)]="valueSearch" #value>-->
+<!--            <button class="btn btn-info" type="submit" data-toggle="tooltip"-->
+<!--                    data-placement="bottom" title="Search">-->
+<!--              <i class=" fas fa-search"></i>-->
+<!--            </button>-->
+<!--          </div>-->
+<!--        </div>-->
+
+      </div>
+      <p class="text-primary mt-3" *ngIf="goodsList != null; else block">Tổng số sản phẩm là: {{goodsList.length}}</p>
+      <ng-template #block>
+        <small class="font-weight-bold">Tổng số sản phẩm là: 0</small>
+      </ng-template>
+      <table class="table table-responsive-md table-hover table-striped ">
+        <thead>
+        <tr class="text-center">
+          <th>STT</th>
+          <th>Tên sản phẩm</th>
+          <th>Số lượng</th>
+          <th>Giá</th>
+<!--          <th>Giới tính</th>-->
+          <th>Loại sản phẩm</th>
+          <th>Nhãn hiệu</th>
+          <th>Tác vụ</th>
+        </tr>
+        </thead>
+        <tbody *ngIf="goodsList; else blockList">
+        <tr *ngFor="let goods of goodsList|paginate: { itemsPerPage: 6, currentPage: p }; let i = index">
+          <td class="text-center">{{i+1}}</td>
+          <td class="text-left">{{goods.goodName}}</td>
+          <td class="text-right">{{goods.quantity}}</td>
+          <td class="text-right">{{goods.price| currency:'VND':true}}</td>
+<!--          <td *ngIf="user.gender == true; else blockGender">Nam</td>-->
+<!--          <ng-template #blockGender>-->
+<!--            <td>Nữ</td>-->
+<!--          </ng-template>-->
+          <td class="text-left">{{goods.categoryName}}</td>
+          <td class="text-left">{{goods.trademark}}</td>
+          <td class="text-center">
+            <button type="button" class="btn btn-sm  mr-3  btn-info"
+                    data-toggle="modal" data-toggle1=" tooltip"
+                    data-placement="bottom" title="Chi tiết" (click)="openDialogDetail(goods.idGood)">
+              <i class="fas fa-eye"></i>
+            </button>
+
+
+            <button type="button" class="btn btn-sm btn-warning mr-3 "
+                    data-toggle="modal" data-toggle1=" tooltip"
+                    data-placement="bottom" title="Sửa" (click)="openDialogEdit(goods.idGood)">
+              <i class="fas fa-tools"></i>
+            </button>
+
+<!--Doi mat khau user-->
+<!--            <button type="button" class="btn btn-sm btn-warning mr-3" data-toggle="tooltip"-->
+<!--                    (click)="openDialogChangePass(user.idUser)" title="Đổi mật khẩu">-->
+<!--              <i class="fas fa-key"></i>-->
+<!--            </button>            -->
+<!--            <button type="button" class="btn btn-sm btn-warning mr-3" data-toggle="tooltip"-->
+<!--                     title="Đổi mật khẩu">-->
+<!--              <i class="fas fa-key"></i>-->
+<!--            </button>-->
+
+            <button type="button" class="btn btn-sm btn-danger mr-3 " data-toggle="tooltip"
+                    (click)="openDialogDelete(goods.idGood)"
+                    title="Xóa">
+              <i class="fas fa-trash-alt"></i>
+            </button>
+          </td>
+        </tr>
+        </tbody>
+        <ng-template #blockList>
+          <tbody>
+          <tr>
+            <td colspan="8"><h4 class="font-weight-bold  text-center">Không có dữ liệu!</h4></td>
+          </tr>
+          </tbody>
+        </ng-template>
+      </table>
+      <pagination-controls class=" d-flex justify-content-center " (pageChange)="p = $event" previousLabel="Trước"
+                           nextLabel="Sau" responsive="true"></pagination-controls>
+    </div>
+  </div>
+</div>

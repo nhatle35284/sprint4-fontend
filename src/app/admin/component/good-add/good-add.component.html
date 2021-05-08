@@ -1,0 +1,183 @@
+<div class="container-fluid">
+  <form [formGroup]="formCreate">
+    <h3 class="row d-flex justify-content-center" style="font-size: 17px">Thê mới sản phẩm</h3>
+    <hr>
+    <div class="text-center">-->
+      <img [src]="url"
+           alt="Xin vui lòng chọn ảnh!!!" style="color: darkred; font-size: 20px;
+         width: 290px; height: 240px" class="img-thumbnail" (click)="fileUploader.click()">
+      <div class="col-6 mt-3">
+        <input type="file" accept="image/*" class="form-control form-control-sm"
+               id="images" #fileUploader (change)="showPreview($event)" style="display: none;">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-3 col-form-label">Tên sản phẩm<sup class="text-danger">*</sup> </label>
+      <div class="col-sm-8">
+        <input type="text" class="form-control form-control-sm" formControlName="goodName" required>
+      </div>
+      <label class="ml-2 text-success"
+             *ngIf="formCreate.get('goodName').valid">
+        <i style="font-size: 15px" class="fas fa-check"></i></label>
+      <div class="text-danger font-italic" role="alert" style="margin-left: 28%"
+           *ngIf="formCreate.get('goodName').invalid && formCreate.get('goodName').touched">
+        <span *ngIf="formCreate.get('goodName').hasError('required')"
+              style="font-size: 12px">Vui lòng tên sản phẩm.</span>
+        <span
+          *ngIf="formCreate.get('goodName').hasError('pattern')"
+          style="font-size: 12px">Tên sản phẩm không hợp lệ.</span>
+<!--        <span style="font-size: 12px"-->
+<!--              *ngIf="formCreate.get('goodName').hasError('inValidName')"> Tên đăng nhập đã tồn tại.-->
+<!--        </span>-->
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-sm-3 col-form-label">Số lượng<sup class="text-danger">*</sup> </label>
+      <div class="col-sm-8">
+        <input type="text" min="1" class="form-control form-control-sm" formControlName="quantity">
+      </div>
+      <label class="ml-2 text-success"
+             *ngIf="formCreate.get('quantity').valid">
+        <i style="font-size: 15px" class="fas fa-check"></i></label>
+      <div class="text-danger font-italic" role="alert" style="margin-left: 28%"
+           *ngIf="formCreate.get('quantity').invalid && formCreate.get('quantity').touched">
+        <span *ngIf="formCreate.get('quantity').hasError('required')"
+              style="font-size: 12px">Vui lòng nhập số lượng.</span>
+        <span
+          *ngIf="formCreate.get('quantity').hasError('pattern')"
+          style="font-size: 12px">Số lượng không hợp lệ.</span>
+        <span style="font-size: 12px"
+              *ngIf="formCreate.get('quantity').hasError('inValidName')"> Tên đăng nhập đã tồn tại.
+        </span>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-sm-3 col-form-label">Giá<sup class="text-danger">*</sup> </label>
+      <div class="col-sm-8">
+        <input type="text" min="1" class="form-control form-control-sm" formControlName="price">
+      </div>
+      <label class="ml-2 text-success"
+             *ngIf="formCreate.get('price').valid">
+        <i style="font-size: 15px" class="fas fa-check"></i></label>
+      <div class="text-danger font-italic" role="alert" style="margin-left: 28%"
+           *ngIf="formCreate.get('price').invalid && formCreate.get('price').touched">
+        <span *ngIf="formCreate.get('price').hasError('required')"
+              style="font-size: 12px">Vui lòng nhập giá sản phẩm.</span>
+        <span
+          *ngIf="formCreate.get('price').hasError('pattern')"
+          style="font-size: 12px">Giá sản phẩm không hợp lệ(>1000).</span>
+<!--        <span style="font-size: 12px"-->
+<!--              *ngIf="formCreate.get('price').hasError('inValidName')"> Tên đăng nhập đã tồn tại.-->
+<!--        </span>-->
+      </div>
+    </div>
+
+    <div class="form-group row ">
+      <label class="col-sm-3 col-form-label">Khuyến mãi<sup class="text-danger">*</sup> </label>
+      <div class="col-sm-8">
+        <input type="text" min="1" class="form-control form-control-sm" formControlName="saleOff" required>
+      </div>
+      <label class="ml-2 text-success"
+             *ngIf="formCreate.get('saleOff').valid">
+        <i style="font-size: 15px" class="fas fa-check"></i></label>
+      <div class="text-danger font-italic" role="alert" style="margin-left: 28%"
+           *ngIf="formCreate.get('saleOff').invalid && formCreate.get('saleOff').touched">
+        <span *ngIf="formCreate.get('saleOff').hasError('required')"
+              style="font-size: 12px">Vui lòng nhập khuyến mãi.</span>
+        <span
+          *ngIf="formCreate.get('saleOff').hasError('pattern')"
+          style="font-size: 12px">Khuyến mãi không hợp lệ(0-100%).</span>
+        <span style="font-size: 12px"
+              *ngIf="formCreate.get('saleOff').hasError('inValidName')"> Tên đăng nhập đã tồn tại.
+        </span>
+      </div>
+    </div>
+    <div class="form-group row ">
+      <label class="col-sm-3 col-form-label">Nhãn hiệu<sup class="text-danger">*</sup> </label>
+      <div class="col-sm-8">
+        <input type="text" min="1" class="form-control form-control-sm" formControlName="trademark" required>
+      </div>
+      <label class="ml-2 text-success"
+             *ngIf="formCreate.get('trademark').valid">
+        <i style="font-size: 15px" class="fas fa-check"></i></label>
+      <div class="text-danger font-italic" role="alert" style="margin-left: 28%"
+           *ngIf="formCreate.get('trademark').invalid && formCreate.get('trademark').touched">
+        <span *ngIf="formCreate.get('trademark').hasError('required')"
+              style="font-size: 12px">Vui lòng nhãn hàng.</span>
+        <span
+          *ngIf="formCreate.get('trademark').hasError('pattern')"
+          style="font-size: 12px">Nhãn hàng không hợp lệ.</span>
+<!--        <span style="font-size: 12px"-->
+<!--              *ngIf="formCreate.get('trademark').hasError('inValidName')"> Tên đăng nhập đã tồn tại.-->
+<!--        </span>-->
+      </div>
+    </div>
+    <div class="form-group row ">
+      <label class="col-sm-3 col-form-label">Loại sản phẩm<sup class="text-danger">*</sup> </label>
+      <div class="col-sm-8">
+        <select class="form-control form-control-sm rounded" id="roomName"
+                placeholder="Phòng có vấn đề" formControlName="idCategory">
+          <option selected value="">--chọn--</option>
+          <option *ngFor="let cate of category" [value]="cate.idCategory">{{cate.categoryName}}</option>
+        </select>
+        <!--        <input type="text" min="1" class="form-control form-control-sm" formControlName="idCategory" required>-->
+      </div>
+      <label class="ml-2 text-success"
+             *ngIf="formCreate.get('idCategory').valid">
+        <i style="font-size: 15px" class="fas fa-check"></i></label>
+      <div class="text-danger font-italic" role="alert" style="margin-left: 28%"
+           *ngIf="formCreate.get('idCategory').invalid && formCreate.get('idCategory').touched">
+        <span *ngIf="formCreate.get('idCategory').hasError('required')"
+              style="font-size: 12px">Vui lòng nhập loại sản phẩm.</span>
+<!--        <span-->
+<!--          *ngIf="formCreate.get('idCategory').hasError('pattern')"-->
+<!--          style="font-size: 12px">Mật khẩu không hợp lệ.</span>-->
+<!--        <span style="font-size: 12px"-->
+<!--              *ngIf="formCreate.get('idCategory').hasError('inValidName')"> Tên đăng nhập đã tồn tại.-->
+<!--        </span>-->
+      </div>
+    </div>
+
+    <!--    <div class="form-group row">-->
+    <!--      <label class="col-sm-3 col-form-label">Giới tính <sup class="text-danger">*</sup> </label>-->
+    <!--      <div class="col-lg-9 col-md-9 d-flex justify-content-start">-->
+    <!--        <div class="radio 4">-->
+    <!--          <input id="radio-1" name="radio" type="radio" [checked]="valueGender === true"-->
+    <!--                 (click)="valueGenderClick(true)">-->
+    <!--          <label for="radio-1" class="radio-label ml-1">Nam</label>-->
+    <!--        </div>-->
+    <!--        <div class="radio ml-4 ">-->
+    <!--          <input id="radio-2" name="radio" type="radio" [checked]="valueGender === false"-->
+    <!--                 (click)="valueGenderClick(false)">-->
+    <!--          <label for="radio-2" class="radio-label ml-1">Nữ</label>-->
+    <!--        </div>-->
+    <!--      </div>-->
+    <!--    </div>-->
+
+    <!--    <div class="form-group row">-->
+    <!--      <label class="col-sm-3 col-form-label">Ngày sinh <sup class="text-danger">*</sup> </label>-->
+    <!--      <div class="col-sm-8">-->
+    <!--        <mat-form-field>-->
+    <!--          <input class="form-control" formControlName="birthday" matInput [matDatepicker]="myDatepicker"-->
+    <!--                 [max]="maxDate" [min]="minDate">-->
+    <!--          <mat-datepicker-toggle matSuffix [for]="myDatepicker"></mat-datepicker-toggle>-->
+    <!--          <mat-datepicker #myDatepicker></mat-datepicker>-->
+    <!--        </mat-form-field>-->
+    <!--      </div>-->
+    <!--      <label class="ml-2 text-success"-->
+    <!--             *ngIf="formEdit.get('birthday').valid">-->
+    <!--        <i style="font-size: 15px; margin-left: 27%" class="fas fa-check"></i></label>-->
+    <!--    </div>-->
+
+    <div class="row d-flex justify-content-center ml-4">
+      <div>
+        <button class="btn btn-secondary btn btn-sm" style="width: 80px" [mat-dialog-close]="">Hủy</button>
+        <button type="submit" class="btn btn-success btn btn-sm mx-4" style="width: 80px" (click)="create()">Lưu
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
+

@@ -1,0 +1,194 @@
+<div class="container-fluid">
+  <form [formGroup]="formEdit">
+    <h3 class="row d-flex justify-content-center" style="font-size: 17px">Chỉnh sủa thông tin thành viên</h3>
+    <hr>
+    <div class="form-group row">
+      <label class="col-sm-3 col-form-label"> Tên đăng nhập
+        <sup class="text-danger">*</sup> </label>
+      <div class="col-sm-8">
+        <input type="text" class="form-control form-control-sm" formControlName="username" required>
+      </div>
+      <label class="ml-2 text-success"
+             *ngIf="formEdit.get('username').valid">
+        <i style="font-size: 15px" class="fas fa-check"></i></label>
+      <div class="text-danger font-italic" role="alert" style="margin-left: 27%"
+           *ngIf="formEdit.get('username').invalid && formEdit.get('username').touched">
+                <span *ngIf="formEdit.get('username').hasError('required')"
+                      style="font-size: 12px">Vui lòng nhập tên đăng nhập.</span>
+        <span
+          *ngIf="formEdit.get('username').hasError('pattern')"
+          style="font-size: 12px">Tên đăng nhập không hợp lệ.</span>
+        <span style="font-size: 12px"
+              *ngIf="formEdit.get('username').hasError('invalidName')"> Tên đăng nhập đã tồn tại.
+        </span>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-sm-3 col-form-label">Họ và tên <sup class="text-danger">*</sup> </label>
+      <div class="col-sm-8">
+        <input type="text" min="1" class="form-control form-control-sm" formControlName="fullName">
+      </div>
+      <label class="ml-2 text-success"
+             *ngIf="formEdit.get('fullName').valid">
+        <i style="font-size: 15px" class="fas fa-check"></i></label>
+      <div class="text-danger font-italic" role="alert" style="margin-left: 27%;font-size: 12px" *ngIf="formEdit.get('fullName').invalid &&
+      formEdit.get('quantity').touched">
+           <span *ngIf="formEdit.get('fullName').hasError('required')"
+                 style="font-size: 12px">Vui lòng nhập email.</span>
+        <span
+          *ngIf="formEdit.get('fullName').hasError('pattern')"
+          style="font-size: 12px">email không hợp lệ.</span>
+      </div>
+    </div>
+
+    <!--    <div class="form-group row ">-->
+    <!--      <label class="col-sm-3 col-form-label">confirmPassword<sup class="text-danger">*</sup> </label>-->
+    <!--      <div class="col-sm-8">-->
+    <!--        <input type="text" min="1" class="form-control form-control-sm" formControlName="confirmPassword" required>-->
+    <!--      </div>-->
+    <!--      <label class="ml-2 text-success"-->
+    <!--             *ngIf="formCreate.get('confirmPassword').valid">-->
+    <!--        <i style="font-size: 15px" class="fas fa-check"></i></label>-->
+    <!--      <div class="text-danger font-italic" role="alert" style="margin-left: 27%;font-size: 12px" *ngIf="formCreate.get('confirmPassword').invalid &&-->
+    <!--      formCreate.get('saleOff').touched">-->
+    <!--           <span *ngIf="formCreate.get('confirmPassword').hasError('required')"-->
+    <!--                 style="font-size: 12px">Vui lòng nhập tên.</span>-->
+    <!--        <span-->
+    <!--          *ngIf="formCreate.get('confirmPassword').hasError('pattern')"-->
+    <!--          style="font-size: 12px">Tên không hợp lệ.</span>-->
+    <!--      </div>-->
+    <!--    </div>-->
+    <div class="form-group row ">
+      <label class="col-sm-3 col-form-label">Email<sup class="text-danger">*</sup> </label>
+      <div class="col-sm-8">
+        <input type="text" min="1" class="form-control form-control-sm" formControlName="email" required>
+      </div>
+      <label class="ml-2 text-success"
+             *ngIf="formEdit.get('email').valid">
+        <i style="font-size: 15px" class="fas fa-check"></i></label>
+      <div class="text-danger font-italic" role="alert" style="margin-left: 27%;font-size: 12px" *ngIf="formEdit.get('email').invalid &&
+      formEdit.get('saleOff').touched">
+           <span *ngIf="formEdit.get('email').hasError('required')"
+                 style="font-size: 12px">Vui lòng nhập tên.</span>
+        <span
+          *ngIf="formEdit.get('email').hasError('pattern')"
+          style="font-size: 12px">Tên không hợp lệ.</span>
+      </div>
+    </div>
+
+    <div class="form-group row ">
+      <label class="col-sm-3 col-form-label">Số điện thoại<sup class="text-danger">*</sup> </label>
+      <div class="col-sm-8">
+        <input type="text" min="1" class="form-control form-control-sm" formControlName="numberPhone" required>
+      </div>
+      <label class="ml-2 text-success"
+             *ngIf="formEdit.get('numberPhone').valid">
+        <i style="font-size: 15px" class="fas fa-check"></i></label>
+      <div class="text-danger font-italic" role="alert" style="margin-left: 27%;font-size: 12px" *ngIf="formEdit.get('numberPhone').invalid &&
+      formEdit.get('saleOff').touched">
+           <span *ngIf="formEdit.get('numberPhone').hasError('required')"
+                 style="font-size: 12px">Vui lòng nhập tên.</span>
+        <span
+          *ngIf="formEdit.get('numberPhone').hasError('pattern')"
+          style="font-size: 12px">Tên không hợp lệ.</span>
+      </div>
+    </div>
+
+    <div class="form-group row ">
+      <label class="col-sm-3 col-form-label">Địa chỉ<sup class="text-danger">*</sup> </label>
+      <div class="col-sm-8">
+        <input type="text" min="1" class="form-control form-control-sm" formControlName="address" required>
+      </div>
+      <label class="ml-2 text-success"
+             *ngIf="formEdit.get('address').valid">
+        <i style="font-size: 15px" class="fas fa-check"></i></label>
+      <div class="text-danger font-italic" role="alert" style="margin-left: 27%;font-size: 12px" *ngIf="formEdit.get('address').invalid &&
+      formEdit.get('saleOff').touched">
+           <span *ngIf="formEdit.get('address').hasError('required')"
+                 style="font-size: 12px">Vui lòng nhập tên.</span>
+        <span
+          *ngIf="formEdit.get('address').hasError('pattern')"
+          style="font-size: 12px">Tên không hợp lệ.</span>
+      </div>
+    </div>
+
+    <!--    <div class="form-group row ">-->
+    <!--      <label class="col-sm-3 col-form-label">idCategory<sup class="text-danger">*</sup> </label>-->
+    <!--      <div class="col-sm-8">-->
+    <!--        <select class="form-control form-control-sm rounded ml-2" id="roomName"-->
+    <!--                placeholder="Phòng có vấn đề" formControlName="idCategory">-->
+    <!--          <option selected value="">&#45;&#45;chọn&#45;&#45;</option>-->
+    <!--          <option *ngFor="let ro of role" [value]="ro.idRole">{{ro.roleName}}</option>-->
+    <!--        </select>-->
+    <!--        &lt;!&ndash;        <input type="text" min="1" class="form-control form-control-sm" formControlName="idCategory" required>&ndash;&gt;-->
+    <!--      </div>-->
+    <!--      <label class="ml-2 text-success"-->
+    <!--             *ngIf="formCreate.get('idCategory').valid">-->
+    <!--        <i style="font-size: 15px" class="fas fa-check"></i></label>-->
+    <!--      <div class="text-danger font-italic" role="alert" style="margin-left: 27%;font-size: 12px" *ngIf="formCreate.get('idCategory').invalid &&-->
+    <!--      formCreate.get('saleOff').touched">-->
+    <!--           <span *ngIf="formCreate.get('idCategory').hasError('idCategory')"-->
+    <!--                 style="font-size: 12px">Vui lòng nhập tên.</span>-->
+    <!--        <span-->
+    <!--          *ngIf="formCreate.get('idCategory').hasError('pattern')"-->
+    <!--          style="font-size: 12px">Tên không hợp lệ.</span>-->
+    <!--      </div>-->
+    <!--    </div>-->
+
+    <!--    <div class="form-group row">-->
+    <!--      <label class="col-sm-3 col-form-label">Giới tính <sup class="text-danger">*</sup> </label>-->
+    <!--      <div class="col-lg-9 col-md-9 d-flex justify-content-start">-->
+    <!--        <div class="radio 4">-->
+    <!--          <input id="radio-1" name="radio" type="radio" [checked]="valueGender === true"-->
+    <!--                 (click)="valueGenderClick(true)">-->
+    <!--          <label for="radio-1" class="radio-label ml-1">Nam</label>-->
+    <!--        </div>-->
+    <!--        <div class="radio ml-4 ">-->
+    <!--          <input id="radio-2" name="radio" type="radio" [checked]="valueGender === false"-->
+    <!--                 (click)="valueGenderClick(false)">-->
+    <!--          <label for="radio-2" class="radio-label ml-1">Nữ</label>-->
+    <!--        </div>-->
+    <!--      </div>-->
+    <!--    </div>-->
+
+    <!--    <div class="form-group row">-->
+    <!--      <label class="col-sm-3 col-form-label">Ngày sinh <sup class="text-danger">*</sup> </label>-->
+    <!--      <div class="col-sm-8">-->
+    <!--        <mat-form-field>-->
+    <!--          <input class="form-control" formControlName="birthday" matInput [matDatepicker]="myDatepicker"-->
+    <!--                 [max]="maxDate" [min]="minDate">-->
+    <!--          <mat-datepicker-toggle matSuffix [for]="myDatepicker"></mat-datepicker-toggle>-->
+    <!--          <mat-datepicker #myDatepicker></mat-datepicker>-->
+    <!--        </mat-form-field>-->
+    <!--      </div>-->
+    <!--      <label class="ml-2 text-success"-->
+    <!--             *ngIf="formEdit.get('birthday').valid">-->
+    <!--        <i style="font-size: 15px; margin-left: 27%" class="fas fa-check"></i></label>-->
+    <!--    </div>-->
+
+    <div class="row d-flex justify-content-center ml-4">
+      <div>
+        <button class="btn btn-secondary btn btn-sm" style="width: 80px" [mat-dialog-close]="">Hủy</button>
+        <button type="submit" class="btn btn-success btn btn-sm mx-4" style="width: 80px" (click)="edit()">Lưu
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
+
+
+
+<!--file Base-->
+
+<!--<div class="text-center">-->
+<!--  <img [src]="url"-->
+<!--       alt="Xin vui lòng chọn ảnh!!!" style="color: darkred; font-size: 20px;-->
+<!--       width: 290px; height: 240px" class="img-thumbnail" (click)="fileUploader.click()">-->
+<!--  <div class="col-6 mt-3">-->
+<!--    <input type="file" accept="image/*" class="form-control form-control-sm"-->
+<!--           id="images" #fileUploader (change)="showPreview($event)" style="display: none;">-->
+<!--  </div>-->
+<!--</div>-->
+<!--<button (click)="save()">save</button>-->
+<!--<img src="https://firebasestorage.googleapis.com/v0/b/c0520g1-spring1.appspot.com/o/Nhat123?alt=media&token=beea5b0f-edcf-47e5-9a2f-d21469ea6006">-->

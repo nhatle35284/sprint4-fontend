@@ -1,0 +1,191 @@
+<!-- slider Area Start-->
+<div class="slider-area ">
+  <!-- Mobile Menu -->
+  <div class="single-slider slider-height2 d-flex align-items-center"
+       style="background-image: url(../../../../assets/img/hero/category.jpg)" data-background="">
+    <div class="container">
+      <div class="row">
+        <div class="col-xl-12">
+          <div class="hero-cap text-center">
+            <h2>Checkout</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- slider Area End-->
+
+<!--================Checkout Area =================-->
+<section class="checkout_area mt-5">
+  <div class="container">
+    <div class="billing_details">
+      <div class="row">
+          <div class="col-lg-8">
+            <form [formGroup]="formCheckout" class="row contact_form" action="#" method="post" novalidate="novalidate">
+            <h3>Chi Tiết Đơn hàng</h3>
+            <div class="col-md-12 form-group p_star">
+              <input type="text" class="form-control" id="first" formControlName="fullName" placeholder="Họ và tên"/>
+              <div class="text-danger font-italic" role="alert"
+                   *ngIf="formCheckout.get('fullName').invalid && formCheckout.get('fullName').touched">
+        <span *ngIf="formCheckout.get('fullName').hasError('required')"
+              >Vui lòng nhập họ và tên</span>
+                <span
+                  *ngIf="formCheckout.get('fullName').hasError('pattern')"
+                  style="font-size: 12px">Số lượng không hợp lệ.</span>
+                <span style="font-size: 12px"
+                      *ngIf="formCheckout.get('fullName').hasError('inValidName')"> Tên đăng nhập đã tồn tại.
+        </span>
+              </div>
+<!--              <span class="placeholder" data-placeholder="Họ và tên"></span>-->
+            </div>
+<!--            <div class="col-md-6 form-group p_star">-->
+<!--              <input type="text" class="form-control" id="last" name="name"/>-->
+<!--              <span class="placeholder" data-placeholder="Last name"></span>-->
+<!--            </div>-->
+<!--            <div class="col-md-12 form-group">-->
+<!--              <input type="text" class="form-control" id="company" name="company" placeholder="Company name"/>-->
+<!--            </div>-->
+            <div class="col-md-6 form-group p_star">
+              <input type="text" class="form-control" id="number" formControlName="numberPhone" placeholder="Số điện thoại"/>
+<!--              <span class="placeholder" data-placeholder="Số điện thoại"></span>-->
+              <div class="text-danger font-italic" role="alert"
+                   *ngIf="formCheckout.get('numberPhone').invalid && formCheckout.get('numberPhone').touched">
+        <span *ngIf="formCheckout.get('numberPhone').hasError('required')"
+        >Vui lòng nhập số điện thoại</span>
+                <span
+                  *ngIf="formCheckout.get('numberPhone').hasError('pattern')"
+                >Số điện thoại không hợp lệ.</span>
+              </div>
+            </div>
+            <div class="col-md-6 form-group p_star">
+              <input type="text" class="form-control" id="email" formControlName="email" placeholder="Địa chỉ Email"/>
+              <div class="text-danger font-italic" role="alert"
+                   *ngIf="formCheckout.get('email').invalid && formCheckout.get('email').touched">
+        <span *ngIf="formCheckout.get('email').hasError('required')"
+        >Vui lòng nhập email</span>
+                <span
+                  *ngIf="formCheckout.get('email').hasError('pattern')"
+                >email không hợp lệ.</span>
+<!--                <span style="font-size: 12px"-->
+<!--                      *ngIf="formCheckout.get('email').hasError('inValidName')"> Tên đăng nhập đã tồn tại.-->
+<!--        </span>-->
+              </div>
+            </div>
+            <div class="col-md-12 form-group p_star">
+              <input type="text" class="form-control" id="add1" formControlName="address" placeholder="Địa chỉ giao hàng"/>
+<!--              <span class="placeholder" data-placeholder="Địa chỉ giao hàng"></span>-->
+              <div class="text-danger font-italic" role="alert"
+                   *ngIf="formCheckout.get('address').invalid && formCheckout.get('address').touched">
+        <span *ngIf="formCheckout.get('address').hasError('required')"
+        >Vui lòng nhập địa chỉ</span>
+                <span
+                  *ngIf="formCheckout.get('address').hasError('pattern')"
+                  style="font-size: 12px">Địa chỉ không hợp lệ.</span>
+<!--                <span style="font-size: 12px"-->
+<!--                      *ngIf="formCheckout.get('address').hasError('inValidName')"> Tên đăng nhập đã tồn tại.-->
+<!--        </span>-->
+              </div>
+            </div>
+            <div class="col-md-12 form-group">
+              <div class="creat_account">
+<!--                <input type="checkbox" id="f-option2" name="selector"/>-->
+<!--                <label for="f-option2">Create an account?</label>-->
+              </div>
+            </div>
+            <div class="col-md-12 form-group">
+              <div class="creat_account">
+                <h3>Ghi chú</h3>
+<!--                <input type="checkbox" id="f-option3" name="selector"/>-->
+<!--                <label for="f-option3">Ship to a different address?</label>-->
+              </div>
+              <textarea class="form-control" name="message" formControlName="note"
+                        placeholder="Order Notes"></textarea>
+            </div>
+        </form>
+          </div>
+
+          <div class="col-lg-4">
+            <div class="order_box">
+              <h2>Đơn hàng của bạn</h2>
+              <ul class="list">
+                <li>
+                  <a href="#">Sản phẩm
+                    <span>Tổng</span>
+                  </a>
+                </li>
+                <li *ngFor="let cart of carts">
+                  <a href="#">{{cart.goodsName}}
+                    <span class="middle text-right">{{'x' + cart.quantity}}</span>
+                    <span class="last">{{cart.total}}</span>
+                  </a>
+                </li>
+              </ul>
+              <ul class="list list_2">
+                <li>
+                  <a href="#">Phí Giao hàng
+                    <span>giao tiêu chuẩn: 5000 VND</span>
+                  </a>
+                </li>
+                <li *ngIf="carts.length != 0;">
+                  <a href="#">Total
+                    <span>{{subTotal}}</span>
+                  </a>
+                </li>
+                <ng-template>
+                  <li>
+                    <a href="#">Tổng
+                      <span>0</span>
+                    </a>
+                  </li>
+                </ng-template>
+              </ul>
+              <div class="payment_item">
+                <div class="radion_btn">
+                  <input type="radio" id="f-option5" name="selector" (click)="money()"/>
+                  <label for="f-option5">Thanh toán tiền mặt</label>
+                  <div class="check"></div>
+                </div>
+                <!--              <p>-->
+                <!--                Please send a check to Store Name, Store Street, Store Town,-->
+                <!--                Store State / County, Store Postcode.-->
+                <!--              </p>-->
+              </div>
+              <div class="payment_item active">
+                <div class="radion_btn">
+                  <input type="radio" id="f-option6" name="selector" value="true" (click)="paypal()"/>
+                  <label for="f-option6">Thanh toán paypal</label>
+                  <img src="img/product/single-product/card.jpg" alt=""/>
+                  <div class="check"></div>
+                </div>
+                <!--              <p>-->
+                <!--                Please send a check to Store Name, Store Street, Store Town,-->
+                <!--                Store State / County, Store Postcode.-->
+                <!--              </p>-->
+              </div>
+              <div class="creat_account">
+                <input type="checkbox" id="f-option4" name="selector"/>
+                <label for="f-option4">Tôi đã đọc và chấp nhận </label>
+                <a href="#">Điều khoản và điều kiện*</a>
+              </div>
+              <a class="btn_3"  (click)="openDialog()">Thanh toán</a>
+
+              <div #paypalRef
+                   [hidden]="check === false || carts.length == 0">
+              </div>
+  <!--              <ng-template #check1>-->
+  <!--                <button type="submit" class="btn_3 text-center" [disabled]="true" (click)="openDialog()">Thanh toán</button>-->
+  <!--              </ng-template>-->
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--================End Checkout Area =================-->
+
+
+<!--<span class="badge badge-danger" *ngIf="listGoodsCart; else block">{{listGoodsCart.length}} +</span>-->
+<!--<ng-template #block>-->
+<!--  <span class="badge badge-danger">0 +</span>-->
+<!--</ng-template>-->
